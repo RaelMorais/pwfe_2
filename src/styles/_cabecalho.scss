@@ -1,0 +1,13 @@
+@use './variaveis.scss' as *;
+
+
+.cabecalho{
+    background-color: $accent;
+    height: 80px;
+
+    h1{
+        color: $background;
+    }
+
+    
+}

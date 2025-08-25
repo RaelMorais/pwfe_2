@@ -1,0 +1,16 @@
+@use './variaveis.scss' as *;
+
+.container{
+    max-width: 1440px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: $secondary;
+
+    h1{
+        font-size: 26px;
+        color: $background;
+    }
+}
