@@ -23,18 +23,14 @@ const schemaTask = z.object({
   description: z
     .string()
     .min(1, "Descrição é obrigatória")
-    .max(200, "Máximo 200 caracteres")
-    // impede números, aceita letras, acentos, espaços e hífen
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/, "Descrição não pode conter números")
+    .max(255, "Máximo 255 caracteres")
     // remove espaços extras
     .transform((val) => val.trim().replace(/\s{2,}/g, " ")),
 
   name_class: z
     .string()
     .min(1, "Nome da classe é obrigatório")
-    .max(50, "Máximo 50 caracteres")
-    // impede números, aceita letras, acentos, espaços e hífen
-    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s-]+$/, "Nome da classe não pode conter números")
+    .max(15, "Máximo 15 caracteres")
     // aplica capitalização correta
     .transform((val) => capitalizeString(val)),
 
@@ -102,57 +98,64 @@ export function CadTarefa() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <label>Descrição:</label>
-        <input {...register("description")} placeholder="Descrição da task" />
-        {errors.description && <p>{errors.description.message}</p>}
-      </div>
+  <form class="form-container" onSubmit={handleSubmit(onSubmit)} noValidate>
+  <div class="form-group">
+    <label>Nome do Setor:</label>
+    <input
+      class="form-control"
+      {...register("name_class")}
+      placeholder="Nome do Setor"
+    />
+    {errors.name_class && <p class="error-message">{errors.name_class.message}</p>}
+  </div>
 
-      <div>
-        <label>Nome da Classe:</label>
-        <input {...register("name_class")} placeholder="Nome da classe" />
-        {errors.name_class && <p>{errors.name_class.message}</p>}
-      </div>
+  <div class="form-group">
+    <label>Prioridade:</label>
+    <select class="form-control" {...register("priority")}>
+      <option value="">Selecione</option>
+      <option value="low">Low</option>
+      <option value="mid">Mid</option>
+      <option value="high">High</option>
+    </select>
+    {errors.priority && <p class="error-message">{errors.priority.message}</p>}
+  </div>
 
-      <div>
-        <label>Prioridade:</label>
-        <select {...register("priority")}>
-          <option value="">Selecione</option>
-          <option value="low">Low</option>
-          <option value="mid">Mid</option>
-          <option value="high">High</option>
-        </select>
-        {errors.priority && <p>{errors.priority.message}</p>}
-      </div>
+  <div class="form-group">
+    <label>Status:</label>
+    <select class="form-control" {...register("status")}>
+      <option value="">Selecione</option>
+      <option value="todo">Todo</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+    {errors.status && <p class="error-message">{errors.status.message}</p>}
+  </div>
 
-      <div>
-        <label>Status:</label>
-        <select {...register("status")}>
-          <option value="">Selecione</option>
-          <option value="todo">Todo</option>
-          <option value="in_progress">In Progress</option>
-          <option value="done">Done</option>
-        </select>
-        {errors.status && <p>{errors.status.message}</p>}
-      </div>
-
-      <div>
-        <label>Usuário:</label>
-        <select {...register("user", { valueAsNumber: true })}>
-          <option value="">Selecione um usuário</option>
-          {users.map((u) => (
-            <option key={u.id} value={u.id}>
-              {u.name}
-            </option>
-          ))}
-        </select>
-        {errors.user && <p>{errors.user.message}</p>}
-      </div>
-
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Enviando..." : "Cadastrar Task"}
-      </button>
-    </form>
+  <div class="form-group">
+    <label>Usuário:</label>
+    <select class="form-control" {...register("user", { valueAsNumber: true })}>
+      <option value="">Selecione um usuário</option>
+      {users.map((u) => (
+        <option key={u.id} value={u.id}>
+          {u.name}
+        </option>
+      ))}
+    </select>
+    {errors.user && <p class="error-message">{errors.user.message}</p>}
+  </div>
+  <div class="form-group">
+    <label>Descrição:</label>
+    <textarea
+      type="text"
+      class="form-control"
+      {...register("description")}
+      placeholder="Descrição da task" rows="5" cols="42"
+    ></textarea>
+    {errors.description && <p class="error-message">{errors.description.message}</p>}
+  </div>
+  <button type="submit" class="submit-button" disabled={isSubmitting}>
+    {isSubmitting ? "Enviando..." : "Cadastrar Task"}
+  </button>
+</form>
   );
 }
