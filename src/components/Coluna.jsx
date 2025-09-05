@@ -1,31 +1,15 @@
 import React, { useState, useEffect } from "react"; // Added useState
+import { Tarefa } from './Tarefa'; 
 
-export function Coluna({ column, tasks, onDragStart, onDrop }){
+export function Coluna({ titulo, tarefas = [] }){
     return(
         <>
-         <section
-        className="coluna"
-        onDragOver={(e) => e.preventDefault()} // Allow dropping
-        onDrop={(e) => onDrop(e, column.id)}
-        >
-        <h2 className="titulo">{column.title}</h2>
-        {tasks.length > 0 ? (
-            tasks.map((task) => (
-            <div
-                key={task.id}
-                className="tarefa"
-                draggable
-                onDragStart={(e) => onDragStart(e, task.id, column.id)}
-            >
-                <p><strong>{task.description}</strong></p>
-                <p>Setor: {task.name_class}</p>
-                <p>Prioridade: {task.priority}</p>
-                <p>Usuário: {task.user_name || task.user}</p>
-            </div>
-            ))
-        ) : (
-            <p className="no-tasks">Nenhuma tarefa</p>
-        )}
+        <section className="coluna">
+            <h2 className="titulo">{titulo}</h2>
+            {tarefas.map(tarefa => {
+                console.log("Renderizando", tarefa);
+                return<Tarefa key={tarefa.id} tarefa={tarefa}/>;
+            })}
         </section>
         </>
     );
