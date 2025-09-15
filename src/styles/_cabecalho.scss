@@ -1,13 +1,32 @@
 @use './variaveis.scss' as *;
 
+.cabecalho {
+  background-color: $accent;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-family: $font-primary;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
-.cabecalho{
-    background-color: $accent;
-    height: 80px;
+  h1 {
+    color: $background;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+  }
 
-    h1{
-        color: $background;
+  /* Responsividade */
+  @media (max-width: 768px) {
+    height: 60px;
+
+    h1 {
+      font-size: 20px;
     }
-
-    
+  }
 }

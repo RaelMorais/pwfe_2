@@ -1,35 +1,121 @@
 @use './variaveis.scss' as *;
 
+.barra {
+  background: black;
+  color: $background;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  font-family: $font-primary;
+  position: relative;
+  z-index: 10;
 
-.barra{
-    background-color: $primary;
-    color: $text-primary;
-    height: 40px;
+  .logo {
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: $background;
+  }
+
+  ul {
+    display: flex;
+    gap: 25px;
     margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+    transition: all 0.3s ease;
 
-    ul{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-right: 20px;
-        font-size: 18px;
-        gap: 20px;
-        align-items: center;
-        padding: 10px;
-    }
-    li{
-        text-decoration: none;
-        list-style: none ;
-    }
-    a{
-        text-decoration: none;
-        color: $background;
+    li a {
+      color: $background;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s;
 
-        a:hover{
-            color: $primary;
-        }
-        a:active{
-            font-weight: bold;
-        }
+      &:hover {
+        color: lighten($background, 30%);
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $background;
+        transition: width 0.3s;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
     }
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: $background;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 0.5rem 1rem;
+
+    .menu-toggle {
+      display: block;
+      margin-left: auto;
+      margin-top: 5px;
+    }
+
+    ul {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      backdrop-filter: blur(8px);
+      padding: 1rem 0;
+
+      li {
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 1rem;
+
+        a:after {
+          display: none; 
+        }
+      }
+    }
+
+    &.active ul {
+      display: flex;
+      animation: slideDown 0.3s ease forwards;
+    }
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

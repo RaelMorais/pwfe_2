@@ -1,0 +1,146 @@
+@use './variaveis.scss' as *;
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 100%;
+  min-width: 250px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    font-size: 1.125rem; // 18px
+    font-weight: bold;
+    color: $primary;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  dl {
+    font-size: 0.875rem; // 14px
+    color: #555;
+    margin-bottom: 0.75rem;
+
+    div {
+      display: flex;
+      gap: 0.25rem;
+
+      dt {
+        font-weight: 600;
+      }
+
+      dd {
+        margin: 0;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .botoes {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    a, button {
+      font-size: 0.75rem; // 12px
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+
+    a {
+      background-color: $primary;
+      color: $background;
+
+      &:hover {
+        background-color: lighten($primary, 10%);
+      }
+    }
+
+    button {
+      background-color: $danger;
+      color: $background;
+
+      &:hover {
+        background-color: lighten($danger, 10%);
+      }
+    }
+  }
+
+  .status-form {
+    label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #555;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .status-select {
+      display: flex;
+      gap: 0.5rem;
+
+      select {
+        flex: 1;
+        padding: 0.25rem 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: $primary;
+          outline: none;
+        }
+      }
+
+      button {
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        background-color: $success;
+        color: $background;
+        font-size: 0.75rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: lighten($success, 10%);
+        }
+      }
+    }
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    min-width: 100%;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    dl {
+      font-size: 0.75rem;
+    }
+
+    .botoes a,
+    .botoes button,
+    .status-form button,
+    .status-form select {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.4rem;
+    }
+  }
+}
