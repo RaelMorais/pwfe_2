@@ -6,3 +6,8 @@
 @use './cabecalho';
 @use './cadTarefa.scss'; 
 @use './tarefa.scss'; 
+@use './_componenteHome.scss';
+
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

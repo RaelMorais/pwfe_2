@@ -4,6 +4,7 @@ import { Coluna } from './Coluna';
 // import '../styles/quadro.scss';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { Link } from 'react-router-dom';
 export function Quadro() {
     const [tarefas, setTarefas] = useState([]);
 
@@ -18,6 +19,12 @@ export function Quadro() {
     const tarefasConcluidas = tarefas.filter(t => t.status === "done");
 
     return (
+        <>
+        <Link to='/cadTarefa'>
+        <button className='Btn'>
+        ➕ Nova Tarefa
+        </button>
+        </Link>
         <DndProvider backend={HTML5Backend}>
         <div className="container">
             <h1>Quadro de Tarefas</h1>
@@ -26,5 +33,6 @@ export function Quadro() {
             <Coluna titulo="Pronto" tarefas={tarefasConcluidas} />
         </div>
         </DndProvider>
+        </>
     );
 }

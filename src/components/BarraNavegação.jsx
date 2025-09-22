@@ -3,15 +3,24 @@ import { Link } from "react-router-dom";
 
 
 export function BarraNavegacao() {
+  // Função para criar estado do botão, caso ele de como desativado, fica com o icone para acesso ao menu
   const [menuAtivo, setMenuAtivo] = useState(false);
 
   return (
+    <header>
     <nav className={`barra ${menuAtivo ? "active" : ""}`}>
       <div className="logo">Kanban</div>
-      <span className="menu-toggle" onClick={() => setMenuAtivo(!menuAtivo)}>
+      {/* Botão com aria-label para acessibilidade */}
+      <button 
+        className="menu-toggle" 
+        aria-expanded={menuAtivo}
+        aria-controls="menu-principal"
+        aria-label="Abrir ou fechar menu"
+        onClick={() => setMenuAtivo(!menuAtivo)}>
         ☰
-      </span>
-      <ul>
+      </button>
+
+      <ul id="menu-principal">
         <li>
           <Link to="/cadUsuario" onClick={() => setMenuAtivo(false)}>
             Cadastro de Usuário
@@ -29,5 +38,6 @@ export function BarraNavegacao() {
         </li>
       </ul>
     </nav>
+    </header>
   );
 }

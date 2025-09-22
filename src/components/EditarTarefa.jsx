@@ -67,50 +67,84 @@ export function EditarTarefa() {
   if (loading) return <p>Carregando...</p>;
 
   return (
-    <div className="form-container">
-      <h2 className="text-2xl font-bold mb-4">Editar Tarefa</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        
-        {/* Descrição */}
-        <div className="form-group">
-          <label>Descrição</label>
-          <input type="text" {...register("description")} placeholder="Digite a descrição" />
-          {errors.description && <p className="error-message">{errors.description.message}</p>}
-        </div>
+    // Componente de formulário de edição de tarefa
+      <section className="form-container">
+        {/* Título principal do formulário */}
+        <h2 className="text-2xl font-bold mb-4">Editar Tarefa</h2>
 
-        {/* Nome da classe */}
-        <div className="form-group">
-          <label>Classe</label>
-          <input type="text" {...register("name_class")} placeholder="Nome da classe" />
-          {errors.name_class && <p className="error-message">{errors.name_class.message}</p>}
-        </div>
+        {/* Formulário controlado pelo react-hook-form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          
+          {/* Campo: Descrição */}
+          <fieldset className="form-group">
+            <label htmlFor="description">Descrição</label>
+            <input
+              id="description"
+              type="text"
+              {...register("description")}
+              placeholder="Digite a descrição"
+            />
+            {/* Exibe mensagem de erro, com role=alert para acessibilidade */}
+            {errors.description && (
+              <p className="error-message" role="alert">
+                {errors.description.message}
+              </p>
+            )}
+          </fieldset>
 
-        {/* Priority */}
-        <div className="form-group">
-          <label>Prioridade</label>
-          <select {...register("priority")}>
-            <option value="">Selecione</option>
-            <option value="low">Low</option>
-            <option value="mid">Mid</option>
-            <option value="high">High</option>
-          </select>
-          {errors.priority && <p className="error-message">{errors.priority.message}</p>}
-        </div>
+          {/* Campo: Nome da classe */}
+          <fieldset className="form-group">
+            <label htmlFor="name_class">Classe</label>
+            <input
+              id="name_class"
+              type="text"
+              {...register("name_class")}
+              placeholder="Nome da classe"
+            />
+            {errors.name_class && (
+              <p className="error-message" role="alert">
+                {errors.name_class.message}
+              </p>
+            )}
+          </fieldset>
 
-        {/* Status */}
-        <div className="form-group">
-          <label>Status</label>
-          <select {...register("status")}>
-            <option value="">Selecione</option>
-            <option value="todo">A fazer</option>
-            <option value="in_progress">Fazendo</option>
-            <option value="done">Pronto</option>
-          </select>
-          {errors.status && <p className="error-message">{errors.status.message}</p>}
-        </div>
+          {/* Campo: Prioridade */}
+          <fieldset className="form-group">
+            <label htmlFor="priority">Prioridade</label>
+            <select id="priority" {...register("priority")}>
+              <option value="">Selecione</option>
+              <option value="low">Baixa</option>
+              <option value="mid">Média</option>
+              <option value="high">Alta</option>
+            </select>
+            {errors.priority && (
+              <p className="error-message" role="alert">
+                {errors.priority.message}
+              </p>
+            )}
+          </fieldset>
 
-        <button type="submit" className="submit-button">Salvar Alterações</button>
-      </form>
-    </div>
+          {/* Campo: Status */}
+          <fieldset className="form-group">
+            <label htmlFor="status">Status</label>
+            <select id="status" {...register("status")}>
+              <option value="">Selecione</option>
+              <option value="todo">A fazer</option>
+              <option value="in_progress">Fazendo</option>
+              <option value="done">Pronto</option>
+            </select>
+            {errors.status && (
+              <p className="error-message" role="alert">
+                {errors.status.message}
+              </p>
+            )}
+          </fieldset>
+
+          {/* Botão de envio do formulário */}
+          <button type="submit" className="submit-button">
+            Salvar Alterações
+          </button>
+        </form>
+      </section>
   );
 }
