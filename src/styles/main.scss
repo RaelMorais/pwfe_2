@@ -1,13 +1,17 @@
+@use "sass:color";
+
+@use './_variaveis.scss';
 @use './_quadro.scss';
-@use './_variaveis.scss'; 
 @use './_coluna.scss';
 @use './barraNavegacao.scss';
-@use './cadUsuario.scss'; 
+@use './cadUsuario.scss';
 @use './cabecalho';
-@use './cadTarefa.scss'; 
-@use './tarefa.scss'; 
+@use './cadTarefa.scss';
+@use './tarefa.scss';
 @use './_componenteHome.scss';
 
 * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 
+               'Lucida Grande', 'Lucida Sans Unicode', 
+               Geneva, Verdana, sans-serif;
 }

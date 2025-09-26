@@ -22,17 +22,17 @@ export function BarraNavegacao() {
 
       <ul id="menu-principal">
         <li>
-          <Link to="/cadUsuario" onClick={() => setMenuAtivo(false)}>
+          <Link to="cadUsuario" onClick={() => setMenuAtivo(false)}>
             Cadastro de Usuário
           </Link>
         </li>
         <li>
-          <Link to="/cadTarefa" onClick={() => setMenuAtivo(false)}>
+          <Link to="cadTarefa" onClick={() => setMenuAtivo(false)}>
             Cadastro de Tarefa
           </Link>
         </li>
         <li>
-          <Link to="/" onClick={() => setMenuAtivo(false)}>
+          <Link to="/inicial" onClick={() => setMenuAtivo(false)}>
             Gerenciamento de Tarefas
           </Link>
         </li>

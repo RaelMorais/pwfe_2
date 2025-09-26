@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function ComponenteHome(){
     return(
@@ -23,7 +24,9 @@ export function ComponenteHome(){
             <div className="conteudo">
                 <h1>Bem-vindo ao Kanban</h1>
                 <p>Organize, acompanhe e conclua suas tarefas de forma simples e intuitiva.</p>
+                <Link to='/inicial'>
                 <button className="btn-acessar">Acessar</button>
+                </Link>
             </div>
         </section>
         </>
