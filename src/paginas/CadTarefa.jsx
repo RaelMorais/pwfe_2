@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; 
 
 // Função para capitalizar corretamente nomes e classes
 function capitalizeString(str) {
@@ -52,6 +53,7 @@ const schemaTask = z.object({
 
 export function CadTarefa() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -87,6 +89,7 @@ export function CadTarefa() {
       alert("Task cadastrada com sucesso!");
       console.log("Resposta da API:", resp.data);
       reset();
+      navigate("/inicial");
     } catch (error) {
       console.error("Erro ao cadastrar task:", error);
       if (error.response) {

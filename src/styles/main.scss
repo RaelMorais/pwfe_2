@@ -1,5 +1,4 @@
 @use "sass:color";
-
 @use './_variaveis.scss';
 @use './_quadro.scss';
 @use './_coluna.scss';
@@ -10,8 +9,17 @@
 @use './tarefa.scss';
 @use './_componenteHome.scss';
 
+// --- TODAS as regras @use e @forward terminam aqui ---
+
+// Importações externas como Google Fonts devem vir AQUI.
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+// Regras CSS/Sass
 * {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 
-               'Lucida Grande', 'Lucida Sans Unicode', 
-               Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }

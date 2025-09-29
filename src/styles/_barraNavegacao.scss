@@ -1,27 +1,31 @@
 @use './variaveis.scss' as *;
 
 .barra {
-  background: black;
-  color: $background;
-  padding: 0 1.5rem;
+  /* Fundo Escuro Suave */
+  background: #222; 
+  color: #fff; /* Usando branco puro ou $background se for branco */
+  padding: 0 2rem; /* Mais padding nas laterais */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 64px; /* Altura levemente maior */
   font-family: $font-primary;
-  position: relative;
-  z-index: 10;
+  position: sticky; /* Sticky é melhor que relative para navegação */
+  top: 0;
+  z-index: 100; /* Z-index alto para garantir que fique acima de tudo */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+  transition: all 0.3s ease; /* Transição suave para rolagem/mudanças */
 
   .logo {
-    font-weight: bold;
-    font-size: 22px;
-    letter-spacing: 1px;
-    color: $background;
+    font-weight: 700; /* Levemente mais bold */
+    font-size: 1.5rem; /* 24px */
+    letter-spacing: 0.5px;
+    color: #fff;
   }
 
   ul {
     display: flex;
-    gap: 25px;
+    gap: 30px; /* Mais espaço entre os links */
     margin: 0;
     padding: 0;
     list-style: none;
@@ -29,82 +33,90 @@
     transition: all 0.3s ease;
 
     li a {
-      color: $background;
+      color: rgba(255, 255, 255, 0.85); /* Cor levemente opaca */
       text-decoration: none;
       padding: 0.5rem 0;
-      position: relative;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: color 0.2s ease, opacity 0.2s ease;
 
       &:hover {
-        color: lighten($background, 30%);
+        color: #fff; /* Fica branco puro ao passar o mouse */
+        opacity: 1;
       }
 
-      &:after {
-        content: "";
-        position: absolute;
-        width: 0%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: $background;
-        transition: width 0.3s;
-      }
-
-      &:hover:after {
-        width: 100%;
-      }
+      /* REMOVIDO: Estilo :after para o sublinhado, priorizando a simplicidade */
     }
   }
 
   .menu-toggle {
     display: none;
-    font-size: 28px;
+    font-size: 26px; /* Tamanho ajustado */
     cursor: pointer;
-    color: $background;
-    transition: transform 0.3s ease;
-
+    color: #fff;
+    transition: transform 0.2s ease;
+    
     &:hover {
-      transform: rotate(90deg);
+      transform: rotate(0deg) scale(1.1); /* Hover mais simples */
     }
   }
 
+  /* Responsividade */
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 0.5rem 1rem;
+    flex-direction: row; /* Volta a ser row para logo e toggle ficarem lado a lado */
+    align-items: center;
+    height: 64px; /* Mantém a altura fixa na versão collapsed */
+    padding: 0 1rem;
+    
+    .logo {
+        margin-right: auto; /* Empurra o toggle para a direita */
+    }
 
     .menu-toggle {
       display: block;
-      margin-left: auto;
-      margin-top: 5px;
+      order: 1; /* Garante que o toggle fique à direita */
     }
 
     ul {
+      position: absolute;
+      top: 100%; /* Inicia logo abaixo da barra */
+      left: 0;
       flex-direction: column;
       width: 100%;
       display: none;
-      margin-top: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0.5rem;
-      backdrop-filter: blur(8px);
-      padding: 1rem 0;
+      gap: 0;
+      margin-top: 0;
+      
+      /* Efeito de Fundo Limpo e Escuro */
+      background: #333; /* Fundo mais escuro para os links */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+      border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória sutil */
+      padding: 0.5rem 0; 
 
       li {
         width: 100%;
-        text-align: left;
-        padding: 0.5rem 1rem;
-
-        a:after {
-          display: none; 
+        text-align: center; /* Centraliza o texto no menu mobile */
+        padding: 0.5rem 0;
+        
+        a {
+            display: block;
+            padding: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.9);
+            
+            &:hover {
+                background-color: #444; /* Fundo sutil ao passar o mouse */
+                color: #fff;
+            }
         }
       }
     }
-
-    &.active ul {
-      display: flex;
-      animation: slideDown 0.3s ease forwards;
+    
+    /* Ativação do Menu Mobile */
+    &.active {
+      height: auto;
+      ul {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+      }
     }
   }
 }
@@ -112,7 +124,7 @@
 @keyframes slideDown {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
   }
   100% {
     opacity: 1;

@@ -1,106 +1,128 @@
 @use './variaveis.scss' as *;
 
 .card {
+  /* Estrutura e layout minimalistas */
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 8px; 
   padding: 1rem;
   width: 100%;
   min-width: 100px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Sombra e borda sutis */
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.1s ease-out;
+  border: 1px solid #eee; 
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px); 
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); 
   }
 
+  /* Título */
   h3 {
-    font-size: 1.125rem; // 18px
-    font-weight: bold;
-    color: $primary;
+    font-size: 1.125rem;
+    font-weight: 600; 
+    color: #333; 
     margin-bottom: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  /* Lista de detalhes (dl) */
   dl {
-    font-size: 0.875rem; // 14px
-    color: #555;
+    font-size: 0.875rem;
+    color: #666; 
     margin-bottom: 0.75rem;
 
     div {
       display: flex;
-      gap: 0.25rem;
+      gap: 0.5rem; 
 
       dt {
-        font-weight: 600;
+        font-weight: 500; 
+        color: #333; 
       }
 
       dd {
         margin: 0;
-        text-transform: capitalize;
+        text-transform: none; 
       }
     }
   }
 
+  /* Botões de ação (Ghost Buttons) */
   .botoes {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 0.75rem;
 
     a, button {
-      font-size: 0.75rem; // 12px
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px; 
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      border: 1px solid transparent; 
+      flex-grow: 1; /* Distribui o espaço entre os botões */
 
       &:hover {
-        transform: translateY(-1px);
+        transform: none; 
       }
     }
 
+    /* Botão Principal/Ação */
     a {
-      background-color: $primary;
-      color: $background;
-
+      background-color: transparent; 
+      border-color: $primary; 
+      color: $primary; 
+      
       &:hover {
-        background-color: lighten($primary, 10%);
+        background-color: $primary; 
+        color: #fff; 
       }
     }
 
+    /* Botão de Perigo/Secundário */
     button {
-      background-color: $danger;
-      color: $background;
+      background-color: transparent;
+      border-color: #ccc; 
+      color: #666; 
 
       &:hover {
-        background-color: lighten($danger, 10%);
+        background-color: #f5f5f5; 
+        border-color: #bbb;
+        color: #333;
       }
     }
   }
 
+  /* Formulário de Status - Alterado para layout vertical */
   .status-form {
     label {
       font-size: 0.75rem;
       font-weight: 500;
-      color: #555;
+      color: #666;
       display: block;
       margin-bottom: 0.25rem;
     }
 
     .status-select {
-      display: flex;
-      gap: 0.5rem;
-
+      /* REMOVIDO: display: flex; */
+      display: block; /* Garante que os elementos se empilhem */
+      
+      /* Estilo do SELECT */
       select {
-        flex: 1;
-        padding: 0.25rem 0.5rem;
+        display: block;
+        width: 100%; /* Ocupa a largura total */
+        padding: 0.4rem 0.5rem;
         border: 1px solid #ccc;
-        border-radius: 6px;
+        border-radius: 4px;
         font-size: 0.75rem;
+        color: #333;
+        background-color: #fff;
         transition: border-color 0.2s;
+        margin-bottom: 0.5rem; /* Espaço entre o select e o botão */
 
         &:focus {
           border-color: $primary;
@@ -108,22 +130,24 @@
         }
       }
 
+    
       button {
-        padding: 0.25rem 0.5rem;
-        border-radius: 6px;
-        background-color: $success;
-        color: $background;
+        width: 100%; 
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        background-color: #444; 
+        color: #fff;
         font-size: 0.75rem;
+        border: none;
         transition: background-color 0.2s;
 
         &:hover {
-          background-color: lighten($success, 10%);
+          background-color: #333; 
         }
       }
     }
   }
 
-  /* Responsividade */
   @media (max-width: 768px) {
     min-width: 100%;
 
@@ -139,8 +163,8 @@
     .botoes button,
     .status-form button,
     .status-form select {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem; 
+      padding: 0.3rem 0.6rem;
     }
   }
 }

@@ -9,7 +9,7 @@ export function BarraNavegacao() {
   return (
     <header>
     <nav className={`barra ${menuAtivo ? "active" : ""}`}>
-      <div className="logo">Kanban</div>
+      <div className="logo"></div>
       {/* Botão com aria-label para acessibilidade */}
       <button 
         className="menu-toggle" 

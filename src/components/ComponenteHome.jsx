@@ -13,7 +13,7 @@ export function ComponenteHome(){
                 muted
                 playsInline
             >
-                <source src="/videos/fundo.mp4" type="video/mp4" />
+                <source src="/videos/initialVideo.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeo em HTML5.
             </video>
 

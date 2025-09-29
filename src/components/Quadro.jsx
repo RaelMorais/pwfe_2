@@ -20,7 +20,7 @@ export function Quadro() {
 
     return (
         <>
-        <Link to='/cadTarefa'>
+        <Link to='cadTarefa'>
         <button className='Btn'>
         ➕ Nova Tarefa
         </button>
