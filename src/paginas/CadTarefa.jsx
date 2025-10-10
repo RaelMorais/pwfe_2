@@ -30,6 +30,7 @@ const schemaTask = z.object({
 
   name_class: z
     .string()
+    .trim()
     .min(1, "Nome da classe é obrigatório")
     .max(15, "Máximo 15 caracteres")
     // aplica capitalização correta
